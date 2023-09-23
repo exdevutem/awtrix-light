@@ -611,7 +611,7 @@ bool DisplayManager_::generateCustomPage(const String &name, JsonObject doc, boo
       customApp.iconName = newIconName;
       customApp.icon.close();
       customApp.iconPosition = 0;
-      customApp.currentFrame=0;
+      customApp.currentFrame = 0;
     }
   }
   else
@@ -619,7 +619,7 @@ bool DisplayManager_::generateCustomPage(const String &name, JsonObject doc, boo
     customApp.icon.close();
     customApp.iconName = "";
     customApp.iconPosition = 0;
-    customApp.currentFrame=0;
+    customApp.currentFrame = 0;
   }
 
   customApp.gradient[0] = -1;
@@ -987,10 +987,8 @@ void DisplayManager_::loadCustomApps()
 void DisplayManager_::loadNativeApps()
 {
   // Define a helper function to check and update an app
-  auto updateApp = [&](const String &name, AppCallback callback, bool show, size_t position)
-  {
-    auto it = std::find_if(Apps.begin(), Apps.end(), [&](const std::pair<String, AppCallback> &app)
-                           { return app.first == name; });
+  auto updateApp = [&](const String &name, AppCallback callback, bool show, size_t position) {
+    auto it = std::find_if(Apps.begin(), Apps.end(), [&](const std::pair<String, AppCallback> &app) { return app.first == name; });
     if (it != Apps.end())
     {
       if (!show)
@@ -1460,8 +1458,7 @@ void DisplayManager_::updateAppVector(const char *json)
     bool show = appObj["show"].as<bool>();
     int position = appObj.containsKey("pos") ? appObj["pos"].as<int>() : Apps.size();
 
-    auto appIt = std::find_if(Apps.begin(), Apps.end(), [&appName](const std::pair<String, AppCallback> &app)
-                              { return app.first == appName; });
+    auto appIt = std::find_if(Apps.begin(), Apps.end(), [&appName](const std::pair<String, AppCallback> &app) { return app.first == appName; });
 
     std::pair<String, AppCallback> nativeApp = getNativeAppByName(appName);
 
@@ -1568,6 +1565,9 @@ void DisplayManager_::setMatrixLayout(int layout)
     break;
   case 2:
     matrix = new FastLED_NeoMatrix(leds, 32, 8, NEO_MATRIX_TOP + NEO_MATRIX_LEFT + NEO_MATRIX_COLUMNS + NEO_MATRIX_ZIGZAG);
+    break;
+  case 3:
+    matrix = new FastLED_NeoMatrix(leds, 8, 8, 4, 1, NEO_MATRIX_BOTTOM + NEO_MATRIX_LEFT + NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE);
     break;
   default:
     break;
@@ -2140,7 +2140,7 @@ void DisplayManager_::reorderApps(const String &jsonString)
   }
 
   JsonArray jsonArray = jsonDocument.as<JsonArray>();
-  std::vector<std::pair<String, AppCallback>> reorderedApps;
+  std::vector<std::pair<String, AppCallback> > reorderedApps;
   for (const String &appName : jsonArray)
   {
     for (const auto &app : Apps)

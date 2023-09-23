@@ -13,7 +13,7 @@ The JSON object has the following properties:
 | Key | Type | Description | Default |
 | --- | ---- | ----------- | ------- |
 | `bootsound` | string | Uses a custom melodie while booting |  |
-| `matrix` | integer | Changes the matrix layout (0,1 or 2) | `0` |
+| `matrix` | integer | Changes the matrix layout (0, 1, 2 or 3) | `0` |
 | `color_correction` | array of int | Sets the colorcorrection of the matrix | `[255,255,255]` |
 | `color_temperature` | array of int | Sets the colortemperature of the matrix | `[255,255,255]` |
 | `rotate_screen` | boolean | Rotates the screen upside down | `false` |
